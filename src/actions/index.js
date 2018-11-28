@@ -95,7 +95,12 @@ function receiveItems(json) {
 
 function fetchItems() {
   let query = '/sms.json'
-  return fetch(query).then(response => response.json())
+  return fetch(query, {
+      headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json'
+      }
+    }).then(response => response.json())
 }
 
 export function checkForNewItems() {
