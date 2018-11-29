@@ -39,11 +39,10 @@ app.get('/sms.json', async (req, res, next) => {
 })
 
 app.post('/sms.json', async (req, res, next) => {
-  console.log(req.body)
-  const { number, text } = req.params
+  const { number, text } = req.body
   try {
-    const res = await db.createSms(number, text)
-    console.log(res.rows[0])
+    const { rows } = await db.createSms(number, text)
+    res.send(rows[0])
   } catch(err) {
     next(err)
   }

@@ -59,4 +59,3 @@ docker-compose up -d web
 
 - [joenas](https://github.com/joenas) joenas - creator, maintainer
 
-```

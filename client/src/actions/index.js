@@ -1,4 +1,3 @@
-import uuidv4 from 'uuid/v4'
 
 // General
 export const SET_NUMBER = 'SET_NUMBER'
@@ -37,13 +36,6 @@ export const setNumberError = (number, message) => {
 }
 
 export function sendItem(params) {
-  const item = Object.assign({}, params, {
-    id: uuidv4(),
-    datetime: new Date(),
-    incoming: false,
-    sent: false,
-    read: true
-  })
   params['api_key'] = process.env.REACT_APP_GAMMU_API_KEY
 
   return (dispatch, getState) => {
@@ -56,14 +48,14 @@ export function sendItem(params) {
       body: JSON.stringify(params)
     })
     .then((response) => {
-        if (!response.ok) {
-            throw Error(response.statusText);
-        }
-        return response;
+      if (!response.ok) {
+          throw Error(response.statusText);
+      }
+      return response;
     })
     .then(response => response.json())
-    .then(_ => dispatch(addItem(item)))
-    .catch(error => dispatch(setNumberError(item.number, error.message)));
+    .then(json => dispatch(addItem(json)))
+    .catch(error => dispatch(setNumberError(params.number, error.message)));
   }
 
 }

@@ -24,6 +24,6 @@ COPY --from=frontend /app/build /app/client/build
 
 ENV PORT=5000
 ENV NODE_ENV=production
-ENV SERVE_STATIC=0
+ENV SERVE_STATIC=1
 EXPOSE 5000
 CMD [ "npm", "start" ]
