@@ -21,7 +21,7 @@ let ConversationsList = ({items, isFetching}) => {
       {(isFetching && items.length === 0) ? <AppLoader/> : null}
       <Grid container>
         <Grid.Column>
-          {items.map(item => <ConversationsListItem key={item.id} item={item} />)}
+          {items.map(item => <ConversationsListItem key={item.datetime} item={item} />)}
         </Grid.Column>
       </Grid>
     </div>
