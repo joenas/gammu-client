@@ -1,15 +1,13 @@
 /.git/
 */node_modules
 client/favicons
-/support/
-
 
 .DS_Store
 .env*
 .gitignore
 
-package-lock.json
-
 Dockerfile*
 docker*
 .dockerignore
+
+gammu-frontend-armv6.tar
