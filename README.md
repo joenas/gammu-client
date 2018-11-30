@@ -1,13 +1,30 @@
 # gammu-frontend
 
-## Usage
+This is a simple _Messages(iOS)_-like client (frontend & backend) for `gammu-smsd` with storage in `postgres`. It lets you view your inbox and send/reply to SMS.
+
+For more info on using `gammu-smsd` on a Raspberry Pi 0 see [this blogpost](https://jonnev.se/raspberry-pi-zero-as-sms-gateway/).
+
+## Content
+
+- [Install](#install)
+- [Raspberry Pi Zero/1](#raspberry-pi-zero1)
+- [Configure gammu-smsd](configure-gammu-smsd)
+
+## Install
+
+If you already have gammu running with a postgres backend you can deploy this to any server capable of accessing that postgres instance.
+It's also possible to just run the `server` for an simple API.
+
+The server exposes 2 endpoints:
+- `GET /sms.json` - Fetch all SMSes
+- `POST /sms.json` - Send an SMS
 
 
 ### Local with npm
 
 You can run both client and server directly with `npm`. For that you need to have an existing instance of Postgres.
 
-### Server
+#### Server
 
 ```bash
 # Setup .env
@@ -21,7 +38,7 @@ npm install
 npm start
 ```
 
-### Client
+#### Client
 
 ```bash
 cd client
@@ -34,6 +51,10 @@ npm start
 ```
 
 ### Docker-compose
+
+For a fresh install of `gammu-smsd` with no current postgres storage, set this up then [configure gammu-smsd](configure-gammu-smsd) to use this database.
+
+**This won't work on a Raspberry Pi Zero/1!**
 
 ```bash
 # Start db
@@ -53,8 +74,7 @@ It's possible(?) to clone this repo and build the image directly on the rpi0 but
 
 My preferred method is to build it on macOS/Linux and [export](https://stackoverflow.com/a/23938978) the image as a tar.
 
-It would look something like this, assuming you have cloned this repo and has `npm` installed.
-
+It would look something like this, assuming you have cloned this repo. If you have `npm` installed, it's possible to fetch all dependencies locally and then build the image.
 
 ```bash
 # On your local machine
