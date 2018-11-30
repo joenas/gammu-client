@@ -8,7 +8,7 @@ For more info on using `gammu-smsd` on a Raspberry Pi 0 see [this blogpost](http
 
 - [Install](#install)
 - [Raspberry Pi Zero/1](#raspberry-pi-zero1)
-- [Configure gammu-smsd](configure-gammu-smsd)
+- [Configure gammu-smsd](#configure-gammu-smsd)
 
 ## Install
 
@@ -48,11 +48,15 @@ npm install
 
 # To run server
 npm start
+
+# Build static files, then you can start the server with SERVE_STATIC=1
+npm run build
+
 ```
 
 ### Docker-compose
 
-For a fresh install of `gammu-smsd` with no current postgres storage, set this up then [configure gammu-smsd](configure-gammu-smsd) to use this database.
+For a fresh install of `gammu-smsd` with no current postgres storage, set this up then [configure gammu-smsd](#configure-gammu-smsd) to use this database.
 
 **This won't work on a Raspberry Pi Zero/1!**
 
@@ -74,10 +78,11 @@ It's possible(?) to clone this repo and build the image directly on the rpi0 but
 
 My preferred method is to build it on macOS/Linux and [export](https://stackoverflow.com/a/23938978) the image as a tar.
 
-It would look something like this, assuming you have cloned this repo. If you have `npm` installed, it's possible to fetch all dependencies locally and then build the image.
+If you have `npm` installed, it's possible to fetch all dependencies locally and then build the image.
 
+**On your local machine**
 ```bash
-# On your local machine
+
 
 # Build the armv6 image and save it to tar
 ./build_arm.sh
@@ -88,8 +93,10 @@ It would look something like this, assuming you have cloned this repo. If you ha
 # If you have NPM installed locally you can build the frontend
 # and fetch node_modules, then copy them into the image (faster)
 ./build_arm.sh -l
+```
 
-# On your pi
+**On your pi**
+```bash
 docker load -i gammu-frontend-armv6.tar
 
 # If you have a database running for gammu already, make sure it's accessible by ip
