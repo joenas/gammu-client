@@ -46,12 +46,11 @@ cd client
 # Install deps
 npm install
 
-# To run server
-npm start
-
 # Build static files, then you can start the server with SERVE_STATIC=1
 npm run build
 
+# To run client dev-server (hot reloading etc)
+npm start
 ```
 
 ### Docker-compose
@@ -67,7 +66,7 @@ docker-compose up -d db
 # Setup db
 cat support/gammu.sql | docker-compose exec -T db psql -U smsd smsd
 
-# Start backend (uncomment in docker-compose.yml if you have frontend in /public)
+# Start client
 docker-compose up -d web
 ```
 
@@ -82,8 +81,6 @@ If you have `npm` installed, it's possible to fetch all dependencies locally and
 
 **On your local machine**
 ```bash
-
-
 # Build the armv6 image and save it to tar
 ./build_arm.sh
 
@@ -97,18 +94,40 @@ If you have `npm` installed, it's possible to fetch all dependencies locally and
 
 **On your pi**
 ```bash
+# Load the transfered tar
 docker load -i gammu-frontend-armv6.tar
+```
 
-# If you have a database running for gammu already, make sure it's accessible by ip
-# and edit the DATABASE_URL below
-docker run -d --rm --name gammu-frontend -p 5000:5000 -e DATABASE_URL=postgres://smsd:smsd@gammu-db:5432/smsd gammu-frontend:armv6
+If you have a database running for gammu already, make sure it's accessible by ip and edit the `DATABASE_URL` below
 
-# If you don't have a postgres already, run it in a container!
+```bash
+docker run  -d --rm --name gammu-frontend \
+            -p 5000:5000 \
+            -e DATABASE_URL=postgres://smsd:smsd@10.0.0.1:5432/smsd \
+            gammu-frontend:armv6
+```
+
+If you don't have a postgres already, run it in a container!
+
+```
 docker network create gammu
 docker volume create gammu-db
 
-docker run -d --rm --name gammu-db --network=gammu -v gammu-db:/var/lib/postgresql/data -e POSTGRES_DB=smsd -e POSTGRES_USER=smsd -e POSTGRES_PASSWORD=smsd arm32v6/postgres:10.6-alpine
-docker run -d --rm --name gammu-frontend -p 5000:5000 --network=gammu -e DATABASE_URL=postgres://smsd:smsd@gammu-db:5432/smsd gammu-frontend:armv6
+docker run  -d --rm --name gammu-db \
+            --network=gammu \
+            -v gammu-db:/var/lib/postgresql/data \
+            -e POSTGRES_DB=smsd \
+            -e POSTGRES_USER=smsd \
+            -e POSTGRES_PASSWORD=smsd \
+            arm32v6/postgres:10.6-alpine
+
+docker run  -d --rm --name gammu-frontend \
+            -p 5000:5000 \
+            --network=gammu \
+            -e DATABASE_URL=postgres://smsd:smsd@gammu-db:5432/smsd \
+            gammu-frontend:armv6
+
+# Setup db schema
 docker exec gammu-frontend cat gammu.sql | docker exec -i gammu-db psql -U smsd smsd
 ```
 
