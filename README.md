@@ -1,9 +1,9 @@
 # gammu-frontend
 
-### Usage
+## Usage
 
 
-## Local with npm
+### Local with npm
 
 You can run both client and server directly with `npm`. For that you need to have an existing instance of Postgres.
 
@@ -33,7 +33,7 @@ npm install
 npm start
 ```
 
-## Docker-compose
+### Docker-compose
 
 ```bash
 # Start db
@@ -49,22 +49,25 @@ docker-compose up -d web
 ## Raspberry Pi Zero/1
 
 Since these are `armv6`, using Docker takes some effort. I haven't been able to get `docker-compose` to work for example.
-It's possible(?) to clone this repo and build the image directly on the Rpi0 but it takes ages.
+It's possible(?) to clone this repo and build the image directly on the rpi0 but it takes ages.
 
 My preferred method is to build it on macOS/Linux and [export](https://stackoverflow.com/a/23938978) the image as a tar.
 
 It would look something like this, assuming you have cloned this repo and has `npm` installed.
 
-```bash
-# Install node_modules for server
-npm install
-# Install node_modules for client
-cd client && npm install && cd ..
 
-# Build and save the image
-docker build -t gammu-frontend:armv6 -f Dockerfile.armv6 .
-docker save -o gammu-frontend-armv6.tar gammu-frontend:armv6
-scp gammu-frontend-armv6.tar yourpi:/home/pi/
+```bash
+# On your local machine
+
+# Build the armv6 image and save it to tar
+./build_arm.sh
+
+# Pass a hostname to transfer the file as well like:
+./build_arm.sh -d host:/home/pi
+
+# If you have NPM installed locally you can build the frontend
+# and fetch node_modules, then copy them into the image (faster)
+./build_arm.sh -l
 
 # On your pi
 docker load -i gammu-frontend-armv6.tar
@@ -72,7 +75,6 @@ docker load -i gammu-frontend-armv6.tar
 # If you have a database running for gammu already, make sure it's accessible by ip
 # and edit the DATABASE_URL below
 docker run -d --rm --name gammu-frontend -p 5000:5000 -e DATABASE_URL=postgres://smsd:smsd@gammu-db:5432/smsd gammu-frontend:armv6
-
 
 # If you don't have a postgres already, run it in a container!
 docker network create gammu
@@ -83,7 +85,7 @@ docker run -d --rm --name gammu-frontend -p 5000:5000 --network=gammu -e DATABAS
 docker exec gammu-frontend cat gammu.sql | docker exec -i gammu-db psql -U smsd smsd
 ```
 
-### Configure gammu
+## Configure gammu-smsd
 
 After creating the containers you need to configure your `gammu-smsd` to use postgres.
 
