@@ -48,12 +48,15 @@ app.post('/sms.json', async (req, res, next) => {
   }
 })
 if (process.env.SERVE_STATIC === '1') {
+  const staticFiles = express.static(path.join(__dirname, '../client/build')
   // Serve any static files
-  app.use(express.static(path.join(__dirname, 'client', 'build')))
+  app.use(staticFiles)
   // Handle React routing, return all requests to React app
-  app.get('*', function(req, res) {
-    res.sendFile(path.join(__dirname, 'client', 'build', 'index.html'))
-  });
+  app.use('/*', staticFiles)
+  // app.get('*', function(req, res) {
+  //   const staticFiles = express.static(path.join(__dirname, '../../client/build'))
+  //   res.sendFile(path.join(__dirname, '..client', 'build', 'index.html'))
+  // });
 }
 
 app.use(clientErrorHandler)

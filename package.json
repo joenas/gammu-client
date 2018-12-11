@@ -2,7 +2,11 @@
   "name": "gammu-client",
   "scripts": {
     "install": "(cd client && npm install) && (cd server && npm install)",
-    "start": "cd server && npm start",
+    "start": "concurrently \"cd client && npm start\" \"cd server && npm start\"",
+    "start:prod": "cd server && npm start",
     "heroku-postbuild": "cd client && npm install && npm run build"
+  },
+  "dependencies": {
+    "concurrently": "^4.1.0"
   }
 }
