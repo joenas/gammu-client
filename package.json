@@ -1,16 +1,8 @@
 {
   "name": "gammu-client",
-  "version": "1.0.0",
-  "description": "API and web client for gammu",
-  "main": "app.js",
   "scripts": {
-    "start": "node app.js"
-  },
-  "author": "Jon Neverland",
-  "license": "MIT",
-  "dependencies": {
-    "dotenv": "^6.1.0",
-    "express": "^4.16.4",
-    "pg": "^7.6.1"
+    "install": "(cd client && npm install) && (cd server && npm install)",
+    "start": "cd server && npm start",
+    "heroku-postbuild": "cd client && npm install && npm run build"
   }
 }
