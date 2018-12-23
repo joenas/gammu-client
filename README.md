@@ -24,21 +24,21 @@ The server exposes 2 endpoints:
 
 You can run both client and server directly with `npm`. For that you need to have an existing instance of Postgres.
 
-#### Server
+#### Usage
 
 ```bash
 # Setup .env
-cp .env.example .env
-nano .env
+cp server/.env.example server/.env
+nano server/.env
 
 # Install deps
 npm install
 
-# To run server
+# To run server & client
 npm start
 ```
 
-#### Client
+#### Client (for building static files)
 
 ```bash
 cd client

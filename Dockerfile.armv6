@@ -13,25 +13,22 @@ FROM node:8.14.0-alpine as backend
 RUN mkdir /app
 WORKDIR /app
 ENV PATH /app/node_modules/.bin:$PATH
-COPY package.json /app/package.json
-RUN npm install --silent
+COPY server/package.json /app/package.json
+RUN npm install --silent --production
 
-# Add the files to arm image
+# Copy the files to arm image
 FROM arm32v6/node:8.14.0-alpine
-RUN mkdir /app
-WORKDIR /app
-ENV PATH /app/node_modules/.bin:$PATH
-
-ADD package.json /app/package.json
-ADD package-lock.json /app/package-lock.json
-COPY --from=frontend /app/build /app/client/build
-COPY --from=backend /app/node_modules /app/node_modules
-ADD app.js /app
-ADD db.js /app
-ADD support/gammu.sql /app/gammu.sql
-
+RUN mkdir -p /app/server
+WORKDIR /app/server
+ENV PATH /app/server/node_modules/.bin:$PATH
 ENV PORT=5000
 ENV NODE_ENV=production
 ENV SERVE_STATIC=1
+
+COPY server /app/server
+COPY support/gammu.sql /app/server/gammu.sql
+COPY --from=frontend /app/build /app/client/build
+COPY --from=backend /app/node_modules /app/server/node_modules
+
 EXPOSE 5000
-CMD [ "npm", "start" ]
+CMD [ "npm", "run", "start-prod" ]

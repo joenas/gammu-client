@@ -3,11 +3,12 @@
 client/favicons
 
 .DS_Store
-.env*
 .gitignore
 
 Dockerfile*
 docker*
 .dockerignore
 
+server/.env*
+server/.eslintrc.js
 gammu-frontend-armv6.tar
