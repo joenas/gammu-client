@@ -1,10 +1,10 @@
-const { Pool } = require('pg')
+const { Pool } = require('pg');
 
-const connectionString = process.env.DATABASE_URL
+const connectionString = process.env.DATABASE_URL;
 
 const pool = new Pool({
-  connectionString: connectionString,
-})
+  connectionString,
+});
 
 const fetchAllQuery = `
         select
@@ -30,7 +30,7 @@ const fetchAllQuery = `
           from sentitems
 
         ORDER BY datetime desc
-      `
+      `;
 
 const createSmsQuery = `
         INSERT
@@ -46,10 +46,10 @@ const createSmsQuery = `
             false as incoming,
             true as sent,
             true as read
-      `
+      `;
 
 module.exports = {
   query: (text, params) => pool.query(text, params),
   fetchAll: () => pool.query(fetchAllQuery),
-  createSms: (number, text) => pool.query(createSmsQuery, [number, text])
-}
+  createSms: (number, text) => pool.query(createSmsQuery, [number, text]),
+};
