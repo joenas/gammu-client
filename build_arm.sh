@@ -45,8 +45,8 @@ if [ $local_npm -eq 0 ]
     DOCKERFILE="Dockerfile.armv6"
   else
     DOCKERFILE="Dockerfile.armv6.local_npm"
-    npm install
-    cd client && npm install && npm run build && cd ..
+    npm install --production
+    cd client && npm run build && cd ..
 fi
 
 # Build and save the image

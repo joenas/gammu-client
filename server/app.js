@@ -5,10 +5,10 @@ require('dotenv').config()
 const express = require('express')
 const bodyParser = require('body-parser')
 const path = require('path')
+const routes = require('./routes/');
+
 const app = express()
 const port = process.env.PORT || 5000
-
-const db = require('./db')
 
 function clientErrorHandler (err, req, res, next) {
   console.error(err.stack)
@@ -23,37 +23,16 @@ function clientErrorHandler (err, req, res, next) {
 app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({ extended: true }))
 
-app.get('/sms.json', async (req, res, next) => {
-  try {
-    const { rows } = await db.fetchAll()
-    let items = rows.reduce(function(groups, item) {
-      const val = item["number"]
-      groups[val] = groups[val] || []
-      groups[val].push(item)
-      return groups
-    }, {})
-    res.send({items: items, ids: Object.keys(items)})
-  } catch(err) {
-      next(err)
-  }
-})
+// Routes
+app.use(routes);
 
-app.post('/sms.json', async (req, res, next) => {
-  const { number, text } = req.body
-  try {
-    const { rows } = await db.createSms(number, text)
-    res.send(rows[0])
-  } catch(err) {
-    next(err)
-  }
-})
+
 if (process.env.SERVE_STATIC === '1') {
+  const staticFiles = express.static(path.join(__dirname, '..', 'client', 'build'));
   // Serve any static files
-  app.use(express.static(path.join(__dirname, 'client', 'build')))
+  app.use(staticFiles)
   // Handle React routing, return all requests to React app
-  app.get('*', function(req, res) {
-    res.sendFile(path.join(__dirname, 'client', 'build', 'index.html'))
-  });
+  app.use('/*', staticFiles)
 }
 
 app.use(clientErrorHandler)
