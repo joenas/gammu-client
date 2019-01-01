@@ -4,6 +4,8 @@ This is a simple _Messages(iOS)_-like client (frontend & backend) for `gammu-sms
 
 For more info on using `gammu-smsd` on a Raspberry Pi 0 see [this blogpost](https://jonnev.se/raspberry-pi-zero-as-sms-gateway/).
 
+**WIP:** There is no auth at the moment so make sure you host this somewhere safe!
+
 ## Content
 
 - [Install](#install)
