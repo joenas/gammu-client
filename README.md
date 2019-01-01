@@ -1,4 +1,4 @@
-# gammu-frontend
+# gammu-client
 
 This is a simple _Messages(iOS)_-like client (frontend & backend) for `gammu-smsd` with storage in `postgres`. It lets you view your inbox and send/reply to SMS.
 
@@ -95,16 +95,16 @@ If you have `npm` installed, it's possible to fetch all dependencies locally and
 **On your pi**
 ```bash
 # Load the transfered tar
-docker load -i gammu-frontend-armv6.tar
+docker load -i gammu-client-armv6.tar
 ```
 
 If you have a database running for gammu already, make sure it's accessible by ip and edit the `DATABASE_URL` below
 
 ```bash
-docker run  -d --rm --name gammu-frontend \
+docker run  -d --rm --name gammu-client \
             -p 5000:5000 \
             -e DATABASE_URL=postgres://smsd:smsd@10.0.0.1:5432/smsd \
-            gammu-frontend:armv6
+            gammu-client:armv6
 ```
 
 If you don't have a postgres already, run it in a container!
@@ -121,14 +121,14 @@ docker run  -d --rm --name gammu-db \
             -e POSTGRES_PASSWORD=smsd \
             arm32v6/postgres:10.6-alpine
 
-docker run  -d --rm --name gammu-frontend \
+docker run  -d --rm --name gammu-client \
             -p 5000:5000 \
             --network=gammu \
             -e DATABASE_URL=postgres://smsd:smsd@gammu-db:5432/smsd \
-            gammu-frontend:armv6
+            gammu-client:armv6
 
 # Setup db schema
-docker exec gammu-frontend cat gammu.sql | docker exec -i gammu-db psql -U smsd smsd
+docker exec gammu-client cat gammu.sql | docker exec -i gammu-db psql -U smsd smsd
 ```
 
 ## Configure gammu-smsd

@@ -9,7 +9,7 @@
 #
 # Install node_modules for client and build static files
 # $ cd client && npm install && npm run build && cd ..
-# $ docker build -t gammu-frontend:armv6 -f Dockerfile.armv6.local_npm .
+# $ docker build -t gammu-client:armv6 -f Dockerfile.armv6.local_npm .
 #
 ########################################################################
 

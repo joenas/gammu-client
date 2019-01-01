@@ -11,4 +11,4 @@ docker*
 
 server/.env*
 server/.eslintrc.js
-gammu-frontend-armv6.tar
+gammu-client-armv6.tar
