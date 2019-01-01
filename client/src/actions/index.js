@@ -39,7 +39,7 @@ export function sendItem(params) {
   params['api_key'] = process.env.REACT_APP_GAMMU_API_KEY
 
   return (dispatch, getState) => {
-    fetch('sms.json', {
+    fetch('/api/sms', {
       headers: {
         'Accept': 'application/json',
         'Content-Type': 'application/json'
@@ -86,7 +86,7 @@ function receiveItems(json) {
 }
 
 function fetchItems() {
-  let query = '/sms.json'
+  let query = '/api/sms'
   return fetch(query, {
       headers: {
         'Accept': 'application/json',

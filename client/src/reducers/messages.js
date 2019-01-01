@@ -22,7 +22,6 @@ function setNumberError(state, action) {
   })
 }
 
-
 function addItem(state, action) {
   const {item} = action
   const {items, ids} = state
@@ -49,9 +48,6 @@ function addItem(state, action) {
 
 function receiveItems(state, action) {
   const ids = union(action.response.ids, state.ids).slice()
-  // console.log('prev', state.ids)
-  // console.log('received', action.response.ids)
-  // console.log('new', ids)
   const items = Object.assign({}, action.response.items, state.items)
   let itemsToKeep = {}
   ids.forEach(id => itemsToKeep[id] = items[id])

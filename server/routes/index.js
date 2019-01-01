@@ -3,7 +3,7 @@ const db = require('../db');
 
 const router = express.Router();
 
-router.get('/sms.json', async (req, res, next) => {
+router.get('/api/sms', async (req, res, next) => {
   try {
     const { rows } = await db.fetchAll();
     const items = rows.reduce((groups, item) => {
@@ -19,7 +19,7 @@ router.get('/sms.json', async (req, res, next) => {
   }
 });
 
-router.post('/sms.json', async (req, res, next) => {
+router.post('/api/sms', async (req, res, next) => {
   const { number, text } = req.body;
   try {
     const { rows } = await db.createSms(number, text);

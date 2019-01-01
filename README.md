@@ -18,8 +18,8 @@ If you already have gammu running with a postgres backend you can deploy this to
 It's also possible to just run the `server` for an simple API.
 
 The server exposes 2 endpoints:
-- `GET /sms.json` - Fetch all SMSes
-- `POST /sms.json` - Send an SMS
+- `GET /api/sms` - Fetch all SMSes
+- `POST /api/sms` - Send an SMS
 
 
 ### Local with npm
