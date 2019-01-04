@@ -4,13 +4,18 @@ This is a simple _Messages(iOS)_-like client (frontend & backend) for `gammu-sms
 
 For more info on using `gammu-smsd` on a Raspberry Pi 0 see [this blogpost](https://jonnev.se/raspberry-pi-zero-as-sms-gateway/).
 
-**WIP:** There is no auth at the moment so make sure you host this somewhere safe!
 
 ## Content
 
+- [Basic Auth](#basic-auth)
 - [Install](#install)
 - [Raspberry Pi Zero/1](#raspberry-pi-zero1)
 - [Configure gammu-smsd](#configure-gammu-smsd)
+
+## Basic Auth
+
+To use Basic Auth, uncomment `GAMMU_CLIENT_USER` and `GAMMU_CLIENT_PASSWORD` in either `.env` or `docker-compose.yml` depending on how you deploy this.
+
 
 ## Install
 

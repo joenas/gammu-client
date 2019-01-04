@@ -5,6 +5,7 @@ require('dotenv').config();
 const express = require('express');
 const bodyParser = require('body-parser');
 const path = require('path');
+const basicAuth = require('express-basic-auth');
 const routes = require('./routes/');
 
 const app = express();
@@ -18,6 +19,17 @@ function clientErrorHandler(err, req, res, next) {
   } else {
     next(err);
   }
+}
+
+const user = process.env.GAMMU_CLIENT_USER;
+const password = process.env.GAMMU_CLIENT_PASSWORD;
+if (process.env.NODE_ENV === 'production' && user && password) {
+  app.use(basicAuth({
+    users: {
+      [user]: password,
+    },
+    challenge: true,
+  }));
 }
 
 app.use(bodyParser.json());
