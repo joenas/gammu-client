@@ -4,7 +4,7 @@ import { Route, Switch} from 'react-router-dom'
 import ReactInterval from 'react-interval'
 import { ConnectedRouter } from 'react-router-redux'
 
-import { invalidateItems, fetchItemsIfNeeded, checkForNewItems } from './actions'
+import { checkForNewItems } from './actions'
 
 import ConversationsList from './containers/ConversationsList'
 import NewConversation from './containers/NewConversation'
@@ -16,9 +16,7 @@ const CHECK_NEW_INTERVAL = 60000
 class App extends Component {
 
   componentDidMount() {
-    const { dispatch } = this.props
-    dispatch(checkForNewItems())
-    //dispatch(fetchItemsIfNeeded())
+    checkForNewItems()
   }
 
   checkForNewItems() {

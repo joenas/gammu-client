@@ -37,8 +37,8 @@ shift $((OPTIND-1))
 [ "${1:-}" = "--" ] && shift
 
 # SETUP
-TAG="gammu-frontend:armv6"
-TAR="gammu-frontend-armv6.tar"
+TAG="gammu-client:armv6"
+TAR="gammu-client-armv6.tar"
 
 if [ $local_npm -eq 0 ]
   then

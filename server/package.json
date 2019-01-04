@@ -1,5 +1,5 @@
 {
-  "name": "gammu-client",
+  "name": "gammu-backend",
   "version": "1.0.0",
   "description": "API and web client for gammu",
   "main": "app.js",

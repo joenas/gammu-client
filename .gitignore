@@ -1,9 +1,8 @@
 *node_modules/
 client/build/
 client/favicons
-gammu-frontend/
 
 .DS_Store
 .env
 
-gammu-frontend-armv6.tar
+gammu-client-armv6.tar
