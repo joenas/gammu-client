@@ -11,6 +11,8 @@ services:
       DATABASE_URL: postgres://smsd:smsd@db:5432/smsd
       NODE_ENV: production
       SERVE_STATIC: 1
+      #GAMMU_CLIENT_USER: admin
+      #GAMMU_CLIENT_PASSWORD: CHANGEME
     depends_on:
       - db
     links:
