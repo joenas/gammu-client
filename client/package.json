@@ -4,9 +4,9 @@
   "private": true,
   "dependencies": {
     "history": "^4.7.2",
-    "lodash": "^4.17.4",
+    "lodash": "^4.17.15",
     "moment": "^2.20.1",
-    "npm": "^6.4.1",
+    "npm": "^6.11.3",
     "react": "^16.2.0",
     "react-dom": "^16.2.0",
     "react-interval": "^2.0.2",
@@ -19,8 +19,8 @@
     "redux-thunk": "^2.2.0",
     "semantic-ui-css": "^2.2.12",
     "semantic-ui-react": "^0.77.1",
-    "yarn": "^1.12.3",
-    "webpack-dev-server": ">=3.1.11"
+    "webpack-dev-server": ">=3.1.11",
+    "yarn": "^1.12.3"
   },
   "scripts": {
     "start": "react-scripts start",
