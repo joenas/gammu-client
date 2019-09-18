@@ -16,7 +16,7 @@ const CHECK_NEW_INTERVAL = 60000
 class App extends Component {
 
   componentDidMount() {
-    checkForNewItems()
+    this.checkForNewItems()
   }
 
   checkForNewItems() {
