@@ -19,7 +19,6 @@
     "redux-thunk": "^2.2.0",
     "semantic-ui-css": "^2.2.12",
     "semantic-ui-react": "^0.77.1",
-    "webpack-dev-server": ">=3.1.11",
     "yarn": "^1.12.3"
   },
   "scripts": {
@@ -31,5 +30,17 @@
   "proxy": "http://localhost:5000",
   "devDependencies": {
     "redux-devtools": "^3.4.0"
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
   }
 }
