@@ -7,8 +7,8 @@
     "lodash": "^4.17.15",
     "moment": "^2.20.1",
     "npm": "^6.11.3",
-    "react": "^16.2.0",
-    "react-dom": "^16.2.0",
+    "react": "16.13.0",
+    "react-dom": "16.13.0",
     "react-interval": "^2.0.2",
     "react-redux": "^5.0.6",
     "react-router-dom": "^4.2.2",
@@ -30,6 +30,9 @@
   },
   "proxy": "http://localhost:5000",
   "devDependencies": {
-    "redux-devtools": "^3.4.0"
+    "jest-fetch-mock": "^3.0.3",
+    "redux-devtools": "^3.4.0",
+    "redux-mock-store": "^1.5.4",
+    "react-test-renderer": "16.13.0"
   }
 }

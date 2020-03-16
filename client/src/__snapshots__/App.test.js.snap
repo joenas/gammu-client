@@ -1,0 +1,48 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renders a menu and container 1`] = `
+<div>
+  <div>
+    <div
+      className="ui top fixed menu borderless"
+      style={
+        Object {
+          "boxShadow": "none",
+        }
+      }
+    >
+      <div
+        className="ui container"
+      >
+        <h3
+          className="header item"
+          onClick={[Function]}
+        >
+          Messages
+        </h3>
+        <div
+          className="right menu"
+        >
+          <a
+            className="item"
+            href="/new"
+            onClick={[Function]}
+          >
+            <i
+              aria-hidden="true"
+              className="blue edit large icon"
+            />
+          </a>
+        </div>
+      </div>
+    </div>
+    <div
+      className="ui container grid"
+    >
+      <div
+        className="column"
+      />
+    </div>
+  </div>
+</div>
+`;
