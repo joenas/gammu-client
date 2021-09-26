@@ -31,6 +31,7 @@ exports[`renders a menu and container 1`] = `
             <i
               aria-hidden="true"
               className="blue edit large icon"
+              onClick={[Function]}
             />
           </a>
         </div>
