@@ -3,7 +3,6 @@
 require('dotenv').config();
 
 const express = require('express');
-const bodyParser = require('body-parser');
 const path = require('path');
 const basicAuth = require('express-basic-auth');
 const routes = require('./routes/');
@@ -32,8 +31,8 @@ if (process.env.NODE_ENV === 'production' && user && password) {
   }));
 }
 
-app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: true }));
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
 
 // Routes
 app.use(routes);
