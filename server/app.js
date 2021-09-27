@@ -5,7 +5,7 @@ require('dotenv').config();
 const express = require('express');
 const path = require('path');
 const basicAuth = require('express-basic-auth');
-const routes = require('./routes/');
+const routes = require('./routes');
 
 const app = express();
 const port = process.env.PORT || 5000;
@@ -36,7 +36,6 @@ app.use(express.urlencoded({ extended: true }));
 
 // Routes
 app.use(routes);
-
 
 if (process.env.SERVE_STATIC === '1') {
   const staticFiles = express.static(path.join(__dirname, '..', 'client', 'build'));
